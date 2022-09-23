@@ -1,0 +1,4 @@
+*/5 * * * * root echo "OK"
+* * * * * www-data cd /var/www/html/api && /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
+ 
+
