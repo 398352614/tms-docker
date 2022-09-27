@@ -63,7 +63,8 @@ services:
   ### MySQL Container #########################################
 
   mysql:
-    image: mysql/mysql-server
+    build:
+      context: ./mysql
     volumes:
       - ../data/mysql:/var/lib/mysql
       #- mysql_data:/var/lib/mysql
