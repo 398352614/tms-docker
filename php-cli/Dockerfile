@@ -50,3 +50,5 @@ WORKDIR /var/www/html
 #RUN composer install
 #RUN php artisan migrate
 
+COPY ./supervisord.conf /etc/supervisor/supervisord.conf
+CMD ["sh","-c","supervisord -c /etc/supervisor/supervisord.conf"]
