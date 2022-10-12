@@ -74,7 +74,7 @@ services:
       - "${MYSQL_PORT}:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_DATABASE=jiyun2_test
+      - MYSQL_DATABASE=tms-api
     restart: always
 
 
