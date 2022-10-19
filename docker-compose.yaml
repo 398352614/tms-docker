@@ -16,17 +16,15 @@ services:
       - redis
     restart: always
 
-  ### PHP-CLI Container #######################################
+  ### PHP Container #######################################
 
-  php-cli:
+  php:
     build:
-      context: ./php-cli
+      context: ./php
     volumes:
       - ${WEB_ROOT}:/var/www/html
     expose:
-      - "2346"
-    ports:
-      - "2346:2346"
+      - 9000
     depends_on:
       - mysql
       - redis
@@ -101,6 +99,25 @@ services:
       - mysql:db
     depends_on:
       - mysql
+    restart: always
+
+  # supervisor
+  supervisor:
+    build:
+      context: ./
+      dockerfile: supervisor/Dockerfile
+    volumes:
+      - ${WEB_ROOT}:/var/www/html
+      - ../data/supervisor/logs:/var/log/supervisor/
+    expose:
+      - 9000
+      - 9001
+    ports:
+      - "${HORIZON_PORT}:9001"
+    depends_on:
+      - php
+      - mysql
+      - redis
     restart: always
 
 ### Volumes Setup ###########################################
