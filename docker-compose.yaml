@@ -95,11 +95,10 @@ services:
     image: phpmyadmin/phpmyadmin
     ports:
       - "${PHPMYADMIN_PORT}:80"
-    links:
-      - mysql:db
-    depends_on:
-      - mysql
     restart: always
+    environment:
+      - PMA_HOST=${MYSQL_HOST}
+      - PMA_ARBITRARY=1
 
   # supervisor
   supervisor:
